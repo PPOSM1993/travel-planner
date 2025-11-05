@@ -100,7 +100,7 @@ export default function NewTrip() {
                                 </div>
                             </div>
                             <div className="flex flex-col gap-2">
-                                <label> Trip Image</label>
+                                <label>Trip Image</label>
 
                                 {imageUrl && (
                                     <Image
@@ -111,17 +111,21 @@ export default function NewTrip() {
                                         height={100}
                                     />
                                 )}
+
                                 <UploadButton
                                     endpoint="imageUploader"
                                     onClientUploadComplete={(res) => {
-                                        if (res && res[0].ufsUrl) {
-                                            setImageUrl(res[0].ufsUrl);
+                                        if (res && res[0].url) {
+                                            setImageUrl(res[0].url); // 👈 Aquí el cambio
                                         }
                                     }}
                                     onUploadError={(error: Error) => {
                                         console.error("Upload error: ", error);
                                     }}
                                 />
+
+                                {/* 👇 NECESARIO para enviar imageUrl al server action */}
+                                <input type="hidden" name="imageUrl" value={imageUrl ?? ""} />
                             </div>
 
 
