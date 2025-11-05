@@ -3,7 +3,6 @@
 import { auth } from "@/auth";
 import { prisma } from "../prisma";
 import { redirect } from "next/navigation";
-import Swal from 'sweetalert2'
 
 export async function createTrip(formData: FormData) {
   const session = await auth();
